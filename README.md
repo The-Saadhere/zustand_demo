@@ -1,75 +1,86 @@
-# React + TypeScript + Vite
+# Zustand Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal counter app demonstrating global state management with [Zustand](https://github.com/pmndrs/zustand) in a React + TypeScript + Vite project, styled with Tailwind CSS v4.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Vite for fast dev/build tooling
+- React 19
+- Zustand for simple, hook-based global state
+- Tailwind CSS v4 for styling
+- Fully typed with TypeScript
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Tool | Version |
+|------|---------|
+| React | ^19.2.7 |
+| Zustand | ^5.0.14 |
+| Tailwind CSS | ^4.3.3 |
+| Vite | ^8.1.1 |
+| TypeScript | ~6.0.2 |
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js (LTS recommended)
+- npm
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone https://github.com/The-Saadhere/zustand_demo.git
+cd zustand_demo
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm run dev
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Visit `http://localhost:5173` to view the app.
+
+### Build
+
+```bash
+npm run build
+```
+
+### Preview production build
+
+```bash
+npm run preview
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## Project Structure
 
 ```
+src/
+├── components/
+│   └── Counter.tsx      # Counter UI component
+├── store/
+│   └── counterStore.ts  # Zustand store definition
+├── App.tsx
+└── main.tsx
+```
+
+## How it Works
+
+The counter state (`count`) and its actions (`increase`, `decrease`, `reset`) live in a Zustand store (`src/store/counterStore.ts`). Any component can subscribe to this store via the `useCounterStore` hook without prop drilling or context providers.
+
+```ts
+const { count, increase, decrease, reset } = useCounterStore();
+```
+
+## License
+
+This project is for learning/demo purposes.
