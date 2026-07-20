@@ -1,7 +1,8 @@
 import { useCounterStore } from "../store/counterStore";
+import CounterValue from "./CounterValue";
 
 const Counter = () => {
-  const { count, increase, decrease, reset } = useCounterStore();
+  const {  increase, decrease, reset } = useCounterStore();
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-gray-100">
@@ -10,9 +11,7 @@ const Counter = () => {
           Counter
         </h1>
 
-        <div className="mb-6 text-center text-6xl font-bold text-indigo-600">
-          {count}
-        </div>
+        <CounterValue />
 
         <div className="flex items-center justify-center gap-3">
           <button
